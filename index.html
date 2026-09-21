@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Study Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>📚 Student Study Planner</h1>
+        <p>Plan your study. Track your progress. Achieve your goals.</p>
+    </header>
+
+    <main>
+
+        <section class="dashboard">
+            <h2>📊 Today's Dashboard</h2>
+
+            <div class="stats">
+                <div class="card">
+                    <h3 id="totalTasks">0</h3>
+                    <p>Total Tasks</p>
+                </div>
+
+                <div class="card">
+                    <h3 id="completedTasks">0</h3>
+                    <p>Completed</p>
+                </div>
+
+                <div class="card">
+                    <h3 id="pendingTasks">0</h3>
+                    <p>Pending</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="planner">
+            <h2>📝 Add Study Task</h2>
+
+            <input type="text" id="taskInput"
+                placeholder="Enter your study task">
+
+            <input type="text" id="subjectInput"
+                placeholder="Enter subject">
+
+            <button onclick="addTask()">Add Task</button>
+        </section>
+
+        <section class="tasks">
+            <h2>✅ My Study Tasks</h2>
+
+            <ul id="taskList"></ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Student Study Planner</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
