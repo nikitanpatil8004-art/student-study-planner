@@ -162,3 +162,83 @@ function deleteSubject(index) {
 
 displayTasks();
 displaySubjects();
+// DAILY TIMETABLE
+
+let dailyTimetable =
+    JSON.parse(localStorage.getItem("dailyTimetable")) || [];
+
+function saveDailyTimetable() {
+    localStorage.setItem(
+        "dailyTimetable",
+        JSON.stringify(dailyTimetable)
+    );
+}
+
+function addDailyTimetable() {
+    const date = document.getElementById("dailyDate").value;
+    const time = document.getElementById("dailyTime").value;
+    const subject = document.getElementById("dailySubject").value.trim();
+    const task = document.getElementById("dailyTask").value.trim();
+
+    if (date === "" || time === "" || subject === "" || task === "") {
+        alert("Please fill all Daily Timetable fields.");
+        return;
+    }
+
+    dailyTimetable.push({
+        date: date,
+        time: time,
+        subject: subject,
+        task: task
+    });
+
+    saveDailyTimetable();
+    displayDailyTimetable();
+
+    document.getElementById("dailyDate").value = "";
+    document.getElementById("dailyTime").value = "";
+    document.getElementById("dailySubject").value = "";
+    document.getElementById("dailyTask").value = "";
+}
+
+function displayDailyTimetable() {
+    const list = document.getElementById("dailyTimetableList");
+
+    if (!list) return;
+
+    list.innerHTML = "";
+
+    dailyTimetable.forEach((item, index) => {
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+            <div>
+                <strong>${item.date}</strong> -
+                <strong>${item.time}</strong>
+            </div>
+
+            <div>
+                Subject: ${item.subject}
+            </div>
+
+            <div>
+                Study: ${item.task}
+            </div>
+
+            <button onclick="deleteDailyTimetable(${index})">
+                Delete
+            </button>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+function deleteDailyTimetable(index) {
+    dailyTimetable.splice(index, 1);
+
+    saveDailyTimetable();
+    displayDailyTimetable();
+}
+
+displayDailyTimetable();
