@@ -64,6 +64,31 @@
 
     <div id="subjectList"></div>
 </section>
+        <section class="daily-timetable">
+    <h2>📅 Daily Timetable</h2>
+
+    <div class="timetable-form">
+        <input type="date" id="dailyDate">
+
+        <input type="time" id="dailyTime">
+
+        <input
+            type="text"
+            id="dailySubject"
+            placeholder="Enter subject"
+        >
+
+        <input
+            type="text"
+            id="dailyTask"
+            placeholder="What do you want to study?"
+        >
+
+        <button onclick="addDailyTimetable()">Add to Timetable</button>
+    </div>
+
+    <div id="dailyTimetableList"></div>
+</section>
        
     </main>
 
