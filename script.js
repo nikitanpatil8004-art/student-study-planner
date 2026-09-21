@@ -1,4 +1,8 @@
-let tasks = [];
+let tasks = JSON.parse(localStorage.getItem("studyTasks")) || [];
+
+function saveTasks() {
+    localStorage.setItem("studyTasks", JSON.stringify(tasks));
+}
 
 function addTask() {
 
@@ -19,6 +23,8 @@ function addTask() {
         completed: false
     });
 
+    saveTasks();
+
     taskInput.value = "";
     subjectInput.value = "";
 
@@ -37,7 +43,7 @@ function displayTasks() {
 
         li.innerHTML = `
             <div>
-                <strong class="${item.completed ? 'completed' : ''}">
+                <strong class="${item.completed ? "completed" : ""}">
                     ${item.task}
                 </strong>
                 <br>
@@ -49,8 +55,7 @@ function displayTasks() {
                     ✓
                 </button>
 
-                <button class="delete-btn"
-                    onclick="deleteTask(${index})">
+                <button class="delete-btn" onclick="deleteTask(${index})">
                     Delete
                 </button>
             </div>
@@ -66,12 +71,16 @@ function completeTask(index) {
 
     tasks[index].completed = !tasks[index].completed;
 
+    saveTasks();
+
     displayTasks();
 }
 
 function deleteTask(index) {
 
     tasks.splice(index, 1);
+
+    saveTasks();
 
     displayTasks();
 }
@@ -92,3 +101,5 @@ function updateDashboard() {
 
     document.getElementById("pendingTasks").textContent = pending;
 }
+
+displayTasks();
